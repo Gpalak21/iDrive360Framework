@@ -12,15 +12,16 @@ public class HomePage extends CommonToAllPages {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        WaitHelpers.checkForVisibilityOfElement(10,addDevice_button);
+        WaitHelpers.checkForVisibilityOfElement(10,upgradeNow_button);
     }
 
-    private By addDevice_button = By.xpath("//a[contains(text(),'Add Devices')]");
+    //private By addDevice_button = By.xpath("//a[contains(text(),'Add Devices')]");
     private By upgradeNow_button = By.xpath("//button[text()='Upgrade Now!']");
 
     public MyAccountPage clickUpgradeNowButton(){
         clickElement(upgradeNow_button);
         return new MyAccountPage(driver);
     }
+
 
 }

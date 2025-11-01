@@ -10,7 +10,7 @@ public class MyAccountPage extends CommonToAllPages {
     WebDriver driver;
     public MyAccountPage(WebDriver driver){
         this.driver=driver;
-        WaitHelpers.checkForVisibilityOfElement(10,cardNumber);
+
     }
 
     private By cardNumber = By.xpath("//input[@name='cardnumber']");
@@ -23,17 +23,23 @@ public class MyAccountPage extends CommonToAllPages {
     private By checkbox = By.className("id-checkmark");
     private By upgradeButton = By.id("frm-btn1");
     private By errorText=By.xpath("//div[@class='id-inp-error']");
+    private By iframe = By.xpath("//div[@class='__PrivateStripeElement']/iframe[contains(@name,'__privateStripeFrame')]");
 
 
     public String upgradeAccount(String cno, String cardExpiry, String cvvNo, String add, String text, String text1, String code){
+        WaitHelpers.checkForVisibilityOfElement(10,iframe);
+        switchToIframe(iframe);
+        scrollIntoView(cardNumber);
         enterElement(cardNumber,cno);
         enterElement(expiry,cardExpiry);
         enterElement(cvv,cvvNo);
+        getDriverToDefaultContent();
         enterElement(billingAdd,add);
         selectDropdown(countryDropdown,text);
-        selectDropdown(stateDropdown,text1);
+        //clickElement(stateDropdown);
+        //selectDropdown(stateDropdown,text1);
         enterElement(postalCode,code);
-        clickElement(checkbox);
+        //clickElement(checkbox);
         clickElement(upgradeButton);
         WaitHelpers.checkForVisibilityOfElement(10,errorText);
        return getText(errorText);

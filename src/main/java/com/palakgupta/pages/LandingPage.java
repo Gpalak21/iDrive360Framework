@@ -15,11 +15,20 @@ public class LandingPage extends CommonToAllPages {
     }
 
     private By signUp = By.xpath("//div[@class='login_wrap']//a[text()='Sign Up']");
+    private By signIn = By.xpath("//div[@class='login_wrap']//a[text()='Sign In']");
+
 
     public SignUpPage clickSignUp(){
         openIDriveUrl();
         WaitHelpers.waitForUrlToLoad(5, PropertiesReader.readKey("url"));
         clickElement(signUp);
         return new SignUpPage(driver);
+    }
+
+    public LoginPage clickSignIn(){
+        openIDriveUrl();
+        WaitHelpers.waitForUrlToLoad(5, PropertiesReader.readKey("url"));
+        clickElement(signIn);
+        return new LoginPage(driver);
     }
 }
