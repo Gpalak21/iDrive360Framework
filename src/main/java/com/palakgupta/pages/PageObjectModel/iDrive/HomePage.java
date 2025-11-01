@@ -1,7 +1,6 @@
-package com.palakgupta.pages;
+package com.palakgupta.pages.PageObjectModel.iDrive;
 
 import com.palakgupta.base.CommonToAllPages;
-import com.palakgupta.util.PropertiesReader;
 import com.palakgupta.util.WaitHelpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

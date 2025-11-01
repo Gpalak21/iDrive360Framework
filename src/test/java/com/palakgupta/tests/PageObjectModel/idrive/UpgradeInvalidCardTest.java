@@ -1,11 +1,11 @@
-package com.palakgupta.tests;
+package com.palakgupta.tests.PageObjectModel.idrive;
 
 import com.palakgupta.base.CommonToAllTests;
 import com.palakgupta.driver.DriverManager;
-import com.palakgupta.pages.HomePage;
-import com.palakgupta.pages.LandingPage;
-import com.palakgupta.pages.LoginPage;
-import com.palakgupta.pages.MyAccountPage;
+import com.palakgupta.pages.PageObjectModel.iDrive.HomePage;
+import com.palakgupta.pages.PageObjectModel.iDrive.LandingPage;
+import com.palakgupta.pages.PageObjectModel.iDrive.LoginPage;
+import com.palakgupta.pages.PageObjectModel.iDrive.MyAccountPage;
 import com.palakgupta.util.PropertiesReader;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
@@ -19,7 +19,7 @@ public class UpgradeInvalidCardTest extends CommonToAllTests {
     @Test
     public void test_InvalidCardUpgrade() {
         LandingPage landingPage = new LandingPage(DriverManager.getDriver());
-        LoginPage loginPage = landingPage.clickSignIn();
+        LoginPage loginPage = landingPage.clickSignIn(PropertiesReader.readKey("url"));
         HomePage homePage = loginPage.signIn(PropertiesReader.readKey("email"), PropertiesReader.readKey("password"));
         MyAccountPage myAccountPage = homePage.clickUpgradeNowButton();
         String errorText = myAccountPage.upgradeAccount(

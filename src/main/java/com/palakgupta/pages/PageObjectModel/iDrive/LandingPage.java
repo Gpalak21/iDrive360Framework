@@ -1,4 +1,4 @@
-package com.palakgupta.pages;
+package com.palakgupta.pages.PageObjectModel.iDrive;
 
 import com.palakgupta.base.CommonToAllPages;
 import com.palakgupta.util.PropertiesReader;
@@ -18,15 +18,15 @@ public class LandingPage extends CommonToAllPages {
     private By signIn = By.xpath("//div[@class='login_wrap']//a[text()='Sign In']");
 
 
-    public SignUpPage clickSignUp(){
-        openIDriveUrl();
+    public SignUpPage clickSignUp(String url){
+        openUrl(url);
         WaitHelpers.waitForUrlToLoad(5, PropertiesReader.readKey("url"));
         clickElement(signUp);
         return new SignUpPage(driver);
     }
 
-    public LoginPage clickSignIn(){
-        openIDriveUrl();
+    public LoginPage clickSignIn(String url){
+        openUrl(url);
         WaitHelpers.waitForUrlToLoad(5, PropertiesReader.readKey("url"));
         clickElement(signIn);
         return new LoginPage(driver);

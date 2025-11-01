@@ -1,6 +1,5 @@
 package com.palakgupta.base;
 
-import com.palakgupta.util.PropertiesReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -11,8 +10,8 @@ import static com.palakgupta.driver.DriverManager.getDriver;
 
 public class CommonToAllPages {
 
-    public void openIDriveUrl(){
-        getDriver().get(PropertiesReader.readKey("url"));
+    public void openUrl(String url){
+        getDriver().get(url);
     }
 
     public void clickElement(By element){
@@ -46,10 +45,14 @@ public class CommonToAllPages {
         return getDriver().findElement(element).getText();
     }
 
+    public String getText(String element){
+        return getDriver().findElement(By.xpath(element)).getText();
+    }
+
     public void scrollIntoView(By element){
         WebElement webElement = getDriver().findElement(element);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView;",webElement);
+        js.executeScript("arguments[0].scrollIntoView(true);",webElement);
     }
 
     public void getDriverToDefaultContent(){
@@ -59,5 +62,18 @@ public class CommonToAllPages {
     public void switchToIframe(By frame){
         WebElement iframe = getDriver().findElement(frame);
         getDriver().switchTo().frame(iframe);
+    }
+
+    public int getRowSize(By row){
+       return getDriver().findElements(row).size();
+    }
+
+    public int getColSize(By cols){
+        return getDriver().findElements(cols).size();
+    }
+
+    public String getCellText(String firstPart, int rowIndex, String secondPart, String thirdPart){
+        String dynamic_path = firstPart + rowIndex + secondPart + 5 + thirdPart;
+        return getText(dynamic_path).trim();
     }
 }

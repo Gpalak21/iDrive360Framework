@@ -1,10 +1,9 @@
-package com.palakgupta.tests;
+package com.palakgupta.tests.PageObjectModel.idrive;
 
-import com.palakgupta.base.CommonToAllPages;
 import com.palakgupta.base.CommonToAllTests;
 import com.palakgupta.driver.DriverManager;
-import com.palakgupta.pages.LandingPage;
-import com.palakgupta.pages.SignUpPage;
+import com.palakgupta.pages.PageObjectModel.iDrive.LandingPage;
+import com.palakgupta.pages.PageObjectModel.iDrive.SignUpPage;
 import com.palakgupta.util.PropertiesReader;
 import com.palakgupta.util.TestDataManager;
 import com.palakgupta.util.User;
@@ -20,7 +19,7 @@ public class CreateAccountTest extends CommonToAllTests {
     public void test_SignUp(){
         User newUser = TestDataManager.getNewUser();
         LandingPage landingPage = new LandingPage(DriverManager.getDriver());
-        SignUpPage signUpPage =landingPage.clickSignUp();
+        SignUpPage signUpPage =landingPage.clickSignUp(PropertiesReader.readKey("url"));
         signUpPage.createAccount(
                 newUser.getFirstName(),
                 newUser.getLastName(),

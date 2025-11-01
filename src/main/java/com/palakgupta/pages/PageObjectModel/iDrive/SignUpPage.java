@@ -1,4 +1,4 @@
-package com.palakgupta.pages;
+package com.palakgupta.pages.PageObjectModel.iDrive;
 
 import com.palakgupta.base.CommonToAllPages;
 import com.palakgupta.util.PropertiesReader;
