@@ -74,6 +74,12 @@ public class CommonToAllPages {
 
     public String getCellText(String firstPart, int rowIndex, String secondPart, String thirdPart){
         String dynamic_path = firstPart + rowIndex + secondPart + 5 + thirdPart;
-        return getText(dynamic_path).trim();
+        //System.out.println("Fetching cell: "+dynamic_path);
+        return getText(By.xpath(dynamic_path)).trim();
+    }
+
+    public boolean isDisplayed(By logo){
+        WebElement element = getDriver().findElement(logo);
+        return element.isDisplayed();
     }
 }

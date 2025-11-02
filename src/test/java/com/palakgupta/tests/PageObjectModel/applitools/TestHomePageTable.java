@@ -7,23 +7,20 @@ import com.palakgupta.pages.PageObjectModel.applitools.LoginPage;
 import com.palakgupta.util.PropertiesReader;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestLogin extends CommonToAllTests {
+public class TestHomePageTable extends CommonToAllTests {
 
     @Owner("Palak Gupta")
-    @Description("Verify User is able to login")
+    @Description("Get the Total Amount From Table")
     @Test
-    public void test_Login(){
+    public void getTotalAmount(){
         LoginPage loginPage = new LoginPage(DriverManager.getDriver());
-        HomePage homePage=loginPage.signIn(
-                PropertiesReader.readKey("ACMEDemo"),
-                PropertiesReader.readKey("ACMEUser"),
-                PropertiesReader.readKey("ACMEpass")
-        );
-        Assert.assertTrue(homePage.getHomePageLogo());
-
+        HomePage homePage=loginPage.signIn(PropertiesReader.readKey("ACMEDemo"),PropertiesReader.readKey("ACMEUser"),PropertiesReader.readKey("ACMEpass"));
+        double totalAmount=homePage.getTableData();
+        System.out.println("Total Amount is: "+totalAmount);
+        double expectedAmount=Double.parseDouble(PropertiesReader.readKey("totalAmount"));
+        Assert.assertEquals(totalAmount,expectedAmount,0.01);
     }
 }
