@@ -5,6 +5,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
+
 import static com.palakgupta.driver.DriverManager.driver;
 import static com.palakgupta.driver.DriverManager.getDriver;
 
@@ -19,7 +21,9 @@ public class CommonToAllPages {
     }
 
     public void enterElement(By element, String data){
-        getDriver().findElement(element).sendKeys(data);
+        WebElement ele = getDriver().findElement(element);
+        ele.clear();
+        ele.sendKeys(data);
     }
 
     public void selectDropdown(By dropdown,String text){
@@ -72,6 +76,10 @@ public class CommonToAllPages {
         return getDriver().findElements(cols).size();
     }
 
+    public List<WebElement> getcells(By locator){
+        return getDriver().findElements(locator);
+    }
+
     public String getCellText(String firstPart, int rowIndex, String secondPart, String thirdPart){
         String dynamic_path = firstPart + rowIndex + secondPart + 5 + thirdPart;
         //System.out.println("Fetching cell: "+dynamic_path);
@@ -82,4 +90,16 @@ public class CommonToAllPages {
         WebElement element = getDriver().findElement(logo);
         return element.isDisplayed();
     }
+
+    public void clickSvg(By svg){
+        List<WebElement> svgPic = getDriver().findElements(svg);
+        svgPic.get(49).click();
+    }
+
+//    public void handleAlert(){
+//        Alert alert = getDriver().switchTo().alert();
+//        alert.sendKeys();
+//    }
+
+
 }
